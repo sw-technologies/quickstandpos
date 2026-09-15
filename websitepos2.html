@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickStand POS - Simple & Efficient Point of Sale</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #27ae60;
+            --blue: #3498db;
+            --stripe-purple: #635bff;
+            --stripe-purple-hover: #4b45c6;
+            --bg: #f4f6f9;
+            --text: #333333;
+            --light-text: #7f8c8d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        header nav a:hover {
+            color: var(--blue);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #219150;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--blue);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        /* Screenshot Gallery Styles */
+        .gallery-section {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 4rem 1.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            background: var(--bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border: 1px solid #cbd5e1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .gallery-caption {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .download-section {
+            background-color: var(--bg);
+            padding: 4rem 1.5rem;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .download-card {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 2.5rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .highlight-card {
+            border: 2px solid var(--accent);
+            background-color: #f0fdf4;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin: 1rem 0 1.5rem 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .specs-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .specs-list li::before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .donation-btn {
+            background-color: var(--stripe-purple);
+        }
+
+        .donation-btn:hover {
+            background-color: var(--stripe-purple-hover);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">QUICKSTAND POS</div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#download">Download & Support</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Fast, Reliable Point of Sale</h1>
+        <p>A lightweight, easy-to-use desktop POS application built for concession stands, small event setups, and fast service menus.</p>
+        <a href="#download" class="cta-btn">Get QuickStand POS</a>
+    </section>
+
+    <section class="container" id="features">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Dynamic CSV Menus</h3>
+                <p>Manage your items, prices, and categories simply by editing a standard <code>menu.csv</code> file. Change prices or add inventory on the fly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Flexible Grid Layouts</h3>
+                <p>Choose between standard, medium, or high-density button layouts to best suit touchscreens or compact displays.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Custom Touch Keypad</h3>
+                <p>Integrated on-screen touch keypad for fast cash tender entry, with support for left, center, right, or disabled placement.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Sales & Reporting</h3>
+                <p>Automatically records transactions to organized CSV files. Generate instantaneous sales summary reports with itemized revenue breakdowns.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Built-In Practice Mode</h3>
+                <p>Train volunteers or staff risk-free. Practice mode isolates test sales into a separate file without affecting real business totals.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Configurable Sales Tax</h3>
+                <p>Easily toggle tax calculation on or off and set custom tax percentages in the system configuration menu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interface Showcase Gallery -->
+    <section class="gallery-section" id="screenshots">
+        <h2 class="section-title">Interface Showcase</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="C:\Users\Admin\OneDrive\Pictures\Screenshots 1\pos_screen_1.png" alt="QuickStand POS Standard Layout">
+                <div class="gallery-caption">
+                    <h3>Clean Standard Layout</h3>
+                    <p>Large, high-contrast touch buttons designed for quick item selection during fast service hours.</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="C:\Users\Admin\OneDrive\Pictures\Screenshots 1\pos_screen_2.png" alt="QuickStand POS with Integrated Touch Keypad">
+                <div class="gallery-caption">
+                    <h3>Integrated Touch Keypad</h3>
+                    <p>Optional side keypad panel for fast, accurate cash tender entry without needing a hardware keyboard.</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="C:\Users\Admin\OneDrive\Pictures\Screenshots 1\pos_screen_3.png" alt="QuickStand POS Active Transaction and Change Calculation">
+                <div class="gallery-caption">
+                    <h3>Instant Change Calculation</h3>
+                    <p>Live order updates, automatically calculated tax, clear total displays, and large change readouts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download-section" id="download">
+        <h2 class="section-title">Download & Support</h2>
+        
+        <div class="download-grid">
+            <!-- Free Download Card -->
+            <div class="download-card">
+                <div>
+                    <h3>QuickStand POS v1.0</h3>
+                    <p style="color: var(--light-text); font-size: 0.9rem; margin-top: 0.5rem;">Free, standalone offline application for Windows.</p>
+                    <ul class="specs-list">
+                        <li>No subscriptions or transaction fees</li>
+                        <li>Runs 100% offline on laptops or tablets</li>
+                        <li>Includes editable <code>menu.csv</code> template</li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="#" class="cta-btn">Download for Windows (.exe)</a>
+                </div>
+            </div>
+
+            <!-- Donation & Support Card -->
+            <div class="download-card highlight-card">
+                <div>
+                    <h3>Support the Project</h3>
+                    <p style="color: var(--light-text); font-size: 0.9rem; margin-top: 0.5rem;">QuickStand POS is provided free for booster clubs, non-profits, and small community events.</p>
+                    <p style="font-size: 0.95rem; margin: 1rem 0;">If this tool saves your organization time or money, consider leaving a small contribution to help cover domain, hosting, and development costs.</p>
+                </div>
+                <div>
+                    <!-- Replace 'YOUR_STRIPE_PAYMENT_LINK_HERE' with your actual Stripe Payment Link URL -->
+                    <a href="https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK_HERE" target="_blank" rel="noopener" class="cta-btn donation-btn">
+                        ☕ Support via Stripe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; QuickStand POS. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
